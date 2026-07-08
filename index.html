@@ -1,4 +1,193 @@
-我的个人主页
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到我的主页</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    Hello World! 这是我的 GitHub Pages 网站。
+        /* 顶部导航 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #0969da; /* GitHub 经典蓝 */
+            text-decoration: none;
+        }
+
+        /* 主体内容区 */
+        main {
+            flex: 1;
+            max-width: 960px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* 个人简介卡片 */
+        .profile-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid #e1e4e8;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: #e1eaec;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #0969da;
+        }
+
+        .profile-card h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #24292e;
+        }
+
+        .profile-card p {
+            color: #586069;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 项目/内容版块 */
+        .section-title {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #24292e;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: #0969da;
+        }
+
+        .card p {
+            color: #586069;
+            font-size: 0.95rem;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6a737d;
+            font-size: 0.85rem;
+            background-color: #fff;
+            border-top: 1px solid #e1e4e8;
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 1.5rem;
+            }
+            .profile-card h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">MySpace</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 个人简介 -->
+        <section class="profile-card">
+            <div class="avatar-placeholder">👋</div>
+            <h1>你好，欢迎来到我的空间</h1>
+            <p>这是一个托管在 GitHub Pages 的个人静态主页。</p>
+        </section>
+
+        <!-- 内容/项目展示 -->
+        <h2 class="section-title">我的探索</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>项目 / 想法一</h3>
+                <p>在这里可以简单描述你正在做的事情，或者存放你个人的随笔、技术笔记概要。</p>
+            </div>
+            <div class="card">
+                <h3>项目 / 想法二</h3>
+                <p>静态页面非常适合用来做个人简历、作品集展示、或者独立的产品落地页（Landing Page）。</p>
+            </div>
+            <div class="card">
+                <h3>常用链接</h3>
+                <p>可以配置一些指向你其他社交平台、开源项目、或者常用工具的超链接。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Powered by GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
