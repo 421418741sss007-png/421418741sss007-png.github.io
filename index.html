@@ -3,191 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎来到我的主页</title>
-    <style>
-        /* 基础样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* 顶部导航 */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #0969da; /* GitHub 经典蓝 */
-            text-decoration: none;
-        }
-
-        /* 主体内容区 */
-        main {
-            flex: 1;
-            max-width: 960px;
-            width: 100%;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* 个人简介卡片 */
-        .profile-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #e1e4e8;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .avatar-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: #e1eaec;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #0969da;
-        }
-
-        .profile-card h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: #24292e;
-        }
-
-        .profile-card p {
-            color: #586069;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* 项目/内容版块 */
-        .section-title {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-            color: #24292e;
-            border-bottom: 2px solid #e1e4e8;
-            padding-bottom: 0.5rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: #fff;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-        }
-
-        .card h3 {
-            margin-bottom: 0.5rem;
-            color: #0969da;
-        }
-
-        .card p {
-            color: #586069;
-            font-size: 0.95rem;
-        }
-
-        /* 页脚 */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #6a737d;
-            font-size: 0.85rem;
-            background-color: #fff;
-            border-top: 1px solid #e1e4e8;
-        }
-
-        /* 手机端适配 */
-        @media (max-width: 600px) {
-            .profile-card {
-                padding: 1.5rem;
-            }
-            .profile-card h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <title>项目控制台</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 min-h-screen pb-12">
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">MySpace</a>
-        </div>
-    </header>
+    <main class="max-w-4xl w-full mx-auto px-4 py-8">
+        <!-- 头部 -->
+        <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-6 mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900">静态项目工作台</h1>
+                <p class="text-slate-500 text-sm mt-1">本地可视化管理与云端同步工具</p>
+            </div>
+            <!-- 本地管理按钮组（仅在本地 localhost 环境下显示） -->
+            <div id="admin-actions" class="hidden flex gap-2">
+                <button onclick="openModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 shadow-sm transition">＋ 新增项目</button>
+                <button onclick="syncToGitHub()" id="sync-btn" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 shadow-sm transition flex items-center gap-1">
+                    ☁ 一键同步 GitHub
+                </button>
+            </div>
+        </header>
 
-    <main>
-        <!-- 个人简介 -->
-        <section class="profile-card">
-            <div class="avatar-placeholder">👋</div>
-            <h1>你好，欢迎来到我的空间</h1>
-            <p>这是一个托管在 GitHub Pages 的个人静态主页。</p>
-        </section>
-
-        <!-- 内容/项目展示 -->
-        <h2 class="section-title">我的探索</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>项目 / 想法一</h3>
-                <p>在这里可以简单描述你正在做的事情，或者存放你个人的随笔、技术笔记概要。</p>
-            </div>
-            <div class="card">
-                <h3>项目 / 想法二</h3>
-                <p>静态页面非常适合用来做个人简历、作品集展示、或者独立的产品落地页（Landing Page）。</p>
-            </div>
-            <div class="card">
-                <h3>常用链接</h3>
-                <p>可以配置一些指向你其他社交平台、开源项目、或者常用工具的超链接。</p>
-            </div>
-        </div>
+        <!-- 列表容器 -->
+        <div id="list-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
     </main>
 
-    <footer>
-        <p>© 2026 Powered by GitHub Pages</p>
-    </footer>
+    <!-- 弹窗：新增/修改项目 -->
+    <div id="modal" class="fixed inset-0 bg-black/40 hidden flex items-center justify-center p-4 backdrop-blur-xs">
+        <div class="bg-white rounded-xl p-6 w-full max-w-md shadow-xl">
+            <h3 class="text-lg font-bold text-slate-900 mb-4" id="modal-title">新增项目</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">项目名称 (中文展示)</label>
+                    <input type="text" id="proj-name" placeholder="例如：高校仿真系统" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-blue-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">相对路径 (文件夹名)</label>
+                    <input type="text" id="proj-path" placeholder="例如：college-simulation" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-blue-500 text-sm font-mono">
+                </div>
+            </div>
+            <div class="flex justify-end gap-2 mt-6">
+                <button onclick="closeModal()" class="px-4 py-2 border border-slate-200 rounded-lg text-sm hover:bg-slate-50">取消</button>
+                <button onclick="saveProject()" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">保存项目</button>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        let projectsData = [];
+
+        if (isLocal) {
+            document.getElementById('admin-actions').classList.remove('hidden');
+        }
+
+        // 初始化加载
+        function loadProjects() {
+            const container = document.getElementById('list-container');
+            container.innerHTML = '<p class="text-slate-400 text-center col-span-full">正在加载...</p>';
+
+            fetch('./config.json?t=' + Date.now())
+                .then(res => res.json())
+                .catch(() => [])
+                .then(data => {
+                    projectsData = data;
+                    container.innerHTML = '';
+                    if(data.length === 0) {
+                        container.innerHTML = '<p class="text-slate-400 text-center col-span-full py-8">暂无项目，请点击右上角新增</p>';
+                        return;
+                    }
+                    data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = "relative block p-5 bg-white rounded-xl border border-slate-200 shadow-xs hover:shadow-md transition group";
+                        
+                        // 区分本地和线上的跳转
+                        card.innerHTML = `
+                            <a href="${item.path}" class="block pr-12">
+                                <div class="font-medium text-slate-900 group-hover:text-blue-600 transition-colors">${item.name}</div>
+                                <div class="text-xs text-slate-400 mt-1 font-mono truncate">${item.path}</div>
+                            </a>
+                            ${isLocal ? `
+                                <div class="absolute right-4 top-5 flex gap-2">
+                                    <button onclick="deleteProject('${item.path}')" class="text-slate-300 hover:text-red-500 text-sm p-1">🗑</button>
+                                </div>
+                            ` : ''}
+                        `;
+                        container.appendChild(card);
+                    });
+                });
+        }
+
+        // 弹窗控制
+        function openModal() { document.getElementById('modal').classList.remove('hidden'); }
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        // 保存
+        function saveProject() {
+            const name = document.getElementById('proj-name').value;
+            const path = document.getElementById('proj-path').value;
+            if(!name || !path) return alert('请填写完整信息');
+
+            fetch('/api/projects', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, path, isNew: true })
+            })
+            .then(res => res.json())
+            .then(() => {
+                closeModal();
+                loadProjects();
+            });
+        }
+
+        // 删除
+        function deleteProject(path) {
+            if(!confirm(`确定要从列表中移除 ${path} 吗？`)) return;
+            const deleteFolder = confirm('需要连带删除本地的物理文件夹吗？（取消则仅在列表中隐藏）');
+
+            fetch('/api/projects', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path, deleteFolder })
+            })
+            .then(res => res.json())
+            .then(() => loadProjects());
+        }
+
+        // 一键同步到 GitHub
+        function syncToGitHub() {
+            const btn = document.getElementById('sync-btn');
+            btn.innerText = '正在同步中...请稍候';
+            btn.disabled = true;
+
+            fetch('/api/sync', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) alert(data.error);
+                else alert('同步成功！线上页面已在更新中。');
+            })
+            .catch(err => alert('同步出错: ' + err))
+            .finally(() => {
+                btn.innerText = '☁ 一键同步 GitHub';
+                btn.disabled = false;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProjects);
+    </script>
 </body>
 </html>
